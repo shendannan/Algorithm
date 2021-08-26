@@ -13,6 +13,7 @@ public class MyQueue {
     }
 
     public void offer(int x) {
+        //永远保持新元素位于栈底，因此当加入新元素时，首先将原有的元素移到另一个栈，添加新元素后再加回来
         while(!stack.isEmpty()){
             another.push(stack.pop());
         }

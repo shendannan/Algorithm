@@ -32,7 +32,7 @@ public class ReorganizeString {
             //放入一个还未经排序的字符中的频数最大的字符
             st.append((char)('a'+index));
             tmp[index]--;
-            //放入一个与前一个放入不同的字符
+            //放入一个与前一个不同的任意字符
             for(int i=0;i<26;i++){
                 if(i!=index && tmp[i]>0){
                     st.append((char)('a'+i));

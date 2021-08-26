@@ -35,10 +35,11 @@ public class MergeKLists {
         SingleListNode dummy = new SingleListNode(0);
         SingleListNode curr = dummy;
         while (!q.isEmpty()) {
-            curr.next = q.poll();
+            SingleListNode node = q.poll();
+            curr.next = node;
             curr = curr.next;
-            if (curr.next != null) {
-                q.add(curr.next);
+            if (node != null) {
+                q.add(node.next);
             }
         }
         return dummy.next;

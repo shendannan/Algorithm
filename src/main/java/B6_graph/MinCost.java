@@ -21,12 +21,7 @@ public class MinCost {
         UDS uds = new UDS(N);
 
         //将边的权值排序，小的先遍历
-        Arrays.sort(connections, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[2]-o2[2];
-            }
-        });
+        Arrays.sort(connections, (o1, o2) -> o1[2]-o2[2]);
 
         int edge = 0, p1, p2, dis, total = 0;
         for (int[] connection : connections) {

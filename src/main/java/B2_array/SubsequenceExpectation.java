@@ -46,7 +46,6 @@ public class SubsequenceExpectation {
             int count = maxValue.get(a[i]);
 
             for (Integer key : maxValue.keySet()) {
-
                 if (key > a[i]) {   //之前子序列最大值大于a[i]，则子序列最大值不变
                     result += key * maxValue.get(key);
                 } else if (key < a[i]) {  //之前子序列最大值小于a[i]，则将原来子序列的值加到a[i]为key的值上，并清空原来子序列值

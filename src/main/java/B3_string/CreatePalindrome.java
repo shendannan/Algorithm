@@ -8,16 +8,16 @@ import java.util.*;
  * 例如输入google，输出2，即删除le
  */
 public class CreatePalindrome {
-    //求原字符串和其反串的最大公共子序列（不是子串，因为可以不连续）的长度（使用动态规划很容易求得）
-    // 然后用原字符串的长度减去这个最大公共子串的长度就得到了最小编辑长度。
+    //求原字符串和其反串的最大公共子序列（不是子串，因为可以不连续）的长度（动态规划）
+    // 然后用原字符串的长度减去这个最大公共子序列（LCS）的长度就得到了最小编辑长度。
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
             String s1 = sc.next();
             String s2 = new StringBuilder(s1).reverse().toString();
-            int[][] dp = new int[s1.length() + 1][s2.length() + 1];//最长回文长度
-            for (int i = 1; i < dp.length; i++ ) {
-                for (int j = 1; j < dp[0].length; j++ ) {
+            int[][] dp = new int[s1.length() + 1][s2.length() + 1];//最长公共子序列的长度
+            for (int i = 1; i <= s1.length(); i++ ) {
+                for (int j = 1; j <= s2.length(); j++ ) {
                     dp[i][j] = s1.charAt(i - 1) == s2.charAt(j - 1) ?
                             dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
                 }

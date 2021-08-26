@@ -46,9 +46,11 @@ public class Chicken {
             queue.add(tmp);
         }
 
-        //最终将优先队列中的值全相加再加上同步增加的值（m*n*k）
-        int result = m * n * k + queue.stream().mapToInt(e -> e).sum();
-
+        //最终将优先队列中的值全相加再加上同步增加的值（m天*n个农场*每天增加k个）
+        int result = m * n * k;
+        for(int i: queue) {
+            result += i;
+        }
         System.out.println(result);
     }
 }

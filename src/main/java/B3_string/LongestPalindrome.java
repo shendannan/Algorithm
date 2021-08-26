@@ -14,6 +14,7 @@ package B3_string;
  * 链接：https://leetcode-cn.com/problems/longest-palindromic-substring
  */
 public class LongestPalindrome {
+    //方法一：中心扩散法
     public String longestPalindrome(String s) {
         if (s == null || s.length() == 0) {
             return "";
@@ -50,6 +51,37 @@ public class LongestPalindrome {
         }
         //返回最右位置
         return ans;
+    }
+
+    //方法二：动态规划，先找到所有的回文子串，再计算最大长度的
+    public String longestPalindrome2(String s) {
+        if(s.length()<=1) return s;
+        int maxLength = 0;
+        String res = s.substring(0,1);
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        for(int i = s.length()-2;i>=0;i--){
+            for(int j = i;j<s.length();j++){
+                if(s.charAt(i) == s.charAt(j)){
+                    if(j-i<=1){
+                        dp[i][j] = true;
+                    }else{
+                        dp[i][j] = dp[i+1][j-1];
+                    }
+                }
+            }
+        }
+        for(int i = 0;i<s.length();i++){
+            for(int j = 0;j<s.length();j++){
+                if(dp[i][j]){
+                    if(j-i>maxLength){
+                        maxLength = j-i;
+                        res = s.substring(i,j+1);
+                    }
+                }
+            }
+        }
+        return res;
+
     }
 
     //补充：双指针判断回文

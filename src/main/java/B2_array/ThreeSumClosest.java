@@ -12,11 +12,11 @@ import java.util.Arrays;
  * 输入：nums = [-1,2,1,-4], target = 1
  * 输出：2
  * 解释：与 target 最接近的和是 2 (-1 + 2 + 1 = 2) 。
- *  
+ *
  * 提示：
  * 3 <= nums.length <= 10^3
- * -10^3 <= nums[i] <= 10^3
- * -10^4 <= target <= 10^4
+ * -10^3<= nums[i]<= 10^3
+ * -10^4<= target<= 10^4
  *
  * 链接：https://leetcode-cn.com/problems/3sum-closest
  */

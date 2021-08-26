@@ -11,13 +11,10 @@ public class Subsequence {
         ArrayList<ArrayList<Integer>> bList = new ArrayList<>();
         int mark = 0;
         int nEnd = 1 << length;
-        boolean bNullset = false;
         for (mark = 0; mark < nEnd; mark++) {
             ArrayList<Integer> aList = new ArrayList<>();
-            bNullset = true;
             for (int i = 0; i < length; i++) {
                 if (((1 << i) & mark) != 0) {
-                    bNullset = false;
                     aList.add(arr[i]);
                 }
             }

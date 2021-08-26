@@ -22,9 +22,7 @@ public class UDS {
             parent[i] = i;
             people[i] = 1;
         }
-        for(int i = 1;i <= candy.length;i++){
-            suger[i] = candy[i-1];
-        }
+        System.arraycopy(candy, 0, suger, 1, candy.length);
     }
 
     public int find(int x){
@@ -32,6 +30,7 @@ public class UDS {
             parent[x] = find(parent[x]);
         return parent[x];
     }
+
     public void union(int x,int y){
         parent[find(x)] = find(y);
         //由于每个集里有他们的属性，在合并时，需要连属性一起合并。

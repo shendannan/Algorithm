@@ -2,16 +2,7 @@ package B6_graph;
 
 import java.util.*;
 
-/**
- * 图的最短路径算法
- * 典型例题：公交换乘
- * 给你一个数组 routes ，表示一系列公交线路，其中每个 routes[i] 表示一条公交线路，第 i 辆公交车将会在上面循环行驶。
- * 例如，路线 routes[0] = [1, 5, 7] 表示第 0 辆公交车会一直按序列 1 -> 5 -> 7 -> 1 -> 5 -> 7 -> 1 -> ...这样的车站路线行驶。
- * 现在从 S 车站出发（初始时不在公交车上），要前往 T 车站。 期间仅可乘坐公交车。
- * 求出 最少乘坐的公交车数量 。如果不可能到达终点车站，返回 -1 。
- * <p>
- * 链接：https://leetcode-cn.com/problems/bus-routes
- */
+
 public class ShortestPath {
     static class Node {
         int busID;
@@ -22,7 +13,16 @@ public class ShortestPath {
             this.transferCount = y;
         }
     }
-
+    /**
+     * 公交换乘的最少次数
+     * 本题与最短路径无关，主要用到建图和BFS
+     * 给你一个数组 routes ，表示一系列公交线路，其中每个 routes[i] 表示一条公交线路，第 i 辆公交车将会在上面循环行驶。
+     * 例如，路线 routes[0] = [1, 5, 7] 表示第 0 辆公交车会一直按序列 1 -> 5 -> 7 -> 1 -> 5 -> 7 -> 1 -> ...这样的车站路线行驶。
+     * 现在从 S 车站出发（初始时不在公交车上），要前往 T 车站。 期间仅可乘坐公交车。
+     * 求出 最少乘坐的公交车数量 。如果不可能到达终点车站，返回 -1 。
+     * <p>
+     * 链接：https://leetcode-cn.com/problems/bus-routes
+     */
     public int numBusesToDestination(int[][] routes, int S, int T) {
         if (S == T) return 0;
         int m = routes.length; //共有m辆公交车
@@ -91,26 +91,14 @@ public class ShortestPath {
         Map<Integer, Set<Integer>> adj = new HashMap<>();//邻接表
         for (int[] route : routes) {
             for(int i = 0;i<route.length-1; i++){
-                if(!adj.containsKey(route[i])){
-                    Set<Integer> adjStation = new HashSet<>();
-                    adjStation.add(route[i+1]);
-                    adj.put(route[i],adjStation);
-                }else{
-                    Set<Integer> adjStation = adj.get(route[i]);
-                    adjStation.add(route[i+1]);
-                    adj.put(route[i],adjStation);
-                }
+                Set<Integer> adjStation = adj.getOrDefault(route[i],new HashSet<>());
+                adjStation.add(route[i+1]);
+                adj.put(route[i],adjStation);
             }
             //最后一个站点的下一个站点是起始站点
-            if(!adj.containsKey(route[route.length-1])){
-                Set<Integer> adjStation = new HashSet<>();
-                adjStation.add(route[0]);
-                adj.put(route[route.length-1],adjStation);
-            }else{
-                Set<Integer> adjStation = adj.get(route[route.length-1]);
-                adjStation.add(route[0]);
-                adj.put(route[route.length-1],adjStation);
-            }
+            Set<Integer> adjStation = adj.getOrDefault(route[route.length-1],new HashSet<>());
+            adjStation.add(route[0]);
+            adj.put(route[route.length-1],adjStation);
         }
 
         //图建立好后，开始着手BFS，由于求最短距离，因此要记录车站是否曾经过（即是否入队过）

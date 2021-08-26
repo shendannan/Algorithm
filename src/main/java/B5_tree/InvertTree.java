@@ -15,7 +15,7 @@ public class InvertTree {
         if (root == null) {
             return null;
         }
-
+        //bfs
         Deque<TreeNode> q = new ArrayDeque<>();
         q.offer(root);
         while (!q.isEmpty()) {

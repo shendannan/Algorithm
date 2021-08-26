@@ -22,9 +22,9 @@ public class MinWindow {
         for (int i = 0; i < t.length(); i++) {
             need[t.charAt(i)]++;
         }
-        //分别为左指针，右指针，最小长度(初始值为一定不可达到的长度)
-        //已有字符串中目标字符串指定字符的出现总频次以及最小覆盖子串在原字符串中的起始位置
-        int left = 0, right = 0, min = s.length() + 1, count = 0, start = 0;
+        //分别为左指针，右指针，最小长度
+        //已有字符串中目标字符串指定字符的出现总频次、最小覆盖子串在原字符串中的起始位置
+        int left = 0, right = 0, min = Integer.MAX_VALUE, count = 0, start = 0;
         while (right < s.length()) {
             char r = s.charAt(right);
             //不需要，直接过
@@ -55,18 +55,12 @@ public class MinWindow {
                 //左边字符的数量刚好等于需要的量，则打破循环，继续右移窗口
                 if (have[l] == need[l]) {
                     count--;
-                    left++;
-                    have[l]--;
-                }else{
-                    //左边字符被目标字符串需要，但有多的，删除多余的
-                    left++;
-                    have[l]--;
                 }
+                //左边字符被目标字符串需要，但有多的，删除多余的
+                left++;
+                have[l]--;
             }
         }
-        if (min == s.length() + 1) {
-            return "";
-        }
-        return s.substring(start, start + min);
+        return min == Integer.MAX_VALUE?"":s.substring(start, start + min);
     }
 }

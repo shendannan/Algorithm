@@ -24,16 +24,6 @@ import java.util.*;
  */
 public class FruitsDistribution {
 
-    //实现Comparator接口
-    static class MyComparator implements Comparator<Integer> {
-        @Override
-        public int compare(Integer o1, Integer o2) {
-            // 如果o1小于o2，我们就返回正值，如果o1大于o2我们就返回负值，
-            // 这样颠倒一下，就可以实现降序排序了,反之即可自定义升序排序了
-            return o2 - o1;
-        }
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt(); // T组测试数据
@@ -42,17 +32,17 @@ public class FruitsDistribution {
             int n = sc.nextInt(); // n种水果
             int m = sc.nextInt(); // m个人
             Integer[] arr = new Integer[n]; // 记录每种水果有多少个
-            int[] count = new int[n]; // 记录每种水果有多少人选
             for (int i = 0; i < n; i++) {
                 arr[i] = sc.nextInt();
             }
-            Arrays.sort(arr, new MyComparator()); // 将水果的数量从大到小排列
-            // 如果只有一个人，那他要最大的水果即可
+            Arrays.sort(arr, (o1, o2) -> o2-o1); // 将水果的数量从大到小排列
+            // 如果只有一个人，那他要数量最多的水果即可
             if (m == 1) {
                 System.out.println(arr[0]);
                 continue;
             }
             // 否则记下1个人的情况，用于2个人的取法
+            int[] count = new int[n]; // 记录每种水果有多少人选
             int max = arr[0];
             count[0] = 1;
             int maxIndex = 0; // 递增的水果序列中，必然是从前往后拿的，maxIndex记录了最后取到的水果位置。

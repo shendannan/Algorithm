@@ -6,7 +6,7 @@ import java.util.*;
  * 给定一个无重复元素的数组candidates和一个目标数target，找出candidates中所有可以使数字和为target的组合。
  * candidates中的数字可以无限制重复被选取。
  *
- * 说明：所有数字（包括target）都是正整数。解集不能包含重复的组合。 
+ * 说明：所有数字（包括target）都是正整数。解集不能包含重复的组合。
  * 链接：https://leetcode-cn.com/problems/combination-sum
  */
 public class CombinationSum {
@@ -24,6 +24,7 @@ public class CombinationSum {
         }
         for (int i = start; i < candidates.length; i++) {
             tmp_list.add(candidates[i]);//做选择，可重复
+            //回溯算法最关键的就是这个start的选取，因为可以重复选取，因此start为i，如果不重复，那么就是i+1
             backtrack(candidates, target - candidates[i], res, i, tmp_list);
             tmp_list.remove(tmp_list.size() - 1);//移除选择
         }
@@ -41,7 +42,10 @@ public class CombinationSum {
      * 链接：https://leetcode-cn.com/problems/combination-sum-iv/
      */
     public int combinationSum4(int[] nums, int target) {
+        //完全背包问题 dp[i]表示目标数为i时，本题实际上是求排列数量，因此要先遍历背包，再遍历物品
         int[] dp = new int[target + 1];
+        //分析：dp[i]的状态由dp[i-num]的数量构成，
+
         // 这个值被其它状态参考，设置为 1 是合理的
         dp[0] = 1;
 

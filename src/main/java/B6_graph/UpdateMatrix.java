@@ -75,11 +75,11 @@ public class UpdateMatrix {
             // 搜索上下左右四个方向
             for (int[] v : vector) {
                 int r = s[0] + v[0], c = s[1] + v[1];
-                if (r >= 0 && r < row
-                        && c >= 0 && c < col
-                        && matrix[r][c] > matrix[s[0]][s[1]] + 1) {
-                    matrix[r][c] = matrix[s[0]][s[1]] + 1;
-                    queue.add(new int[]{r, c});
+                if (r >= 0 && r < row && c >= 0 && c < col) {
+                    if(matrix[s[0]][s[1]] + 1 < matrix[r][c]){
+                        matrix[r][c] = matrix[s[0]][s[1]] + 1;
+                        queue.add(new int[]{r, c});
+                    }
                 }
             }
         }

@@ -56,17 +56,22 @@ B7：双端队列类
 MonotonousQueue 滑动窗口的最大值：单调队列
 MonotonousStack 下一个最大元素、直线高楼问题：单调栈
 
+B8：动态规划类
+PackSack 背包问题：动态规划
+PokeBalloons 戳气球问题：动态规划
+Rob 打家劫舍问题：动态规划
+StockSell 股票买卖问题：动态规划
+HatsDivided 分配帽子：回溯或动规
+
+B9：贪心算法类
+Greedy 区间覆盖问题：贪心算法
+
 C类：应用题
 BinaryWatch 二进制手表问题：回溯 暴力法
 Candy 牛牛吃糖果：并查集+动态规划
 Chicken 农场养鸡问题：模拟+优先队列
 EggsThrowing 高楼扔鸡蛋问题：动态规划+二分剪枝
 FruitsDistribution 分水果问题：排序+动态规划（典型输入）
-Greedy 区间覆盖问题：贪心算法
-HatsDivided 分配帽子：回溯或动规
 MatrixPaint N*3网格涂色：递推法
-PackSack 背包问题：动态规划
 PathNum 矩阵走法：数学推理
-PokeBalloons 戳气球问题：动态规划
-Rob 打家劫舍问题：动态规划
-StockSell 股票买卖问题：动态规划
+

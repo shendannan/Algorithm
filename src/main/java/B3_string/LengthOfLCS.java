@@ -10,23 +10,24 @@ import java.util.Arrays;
  */
 public class LengthOfLCS {
     //dp[i][j]的含义是：对于s1[1..i]和s2[1..j]，它们的 LCS 长度是dp[i][j]
+    //这里用的带备忘录的dfs方法，用动规更简单，可参考CreatePalindrome
     public int longestCommonSubsequence(String s1,String s2){
         int[][] memo = new int[s1.length()][s2.length()];
         for(int[] i:memo){
             Arrays.fill(i,-1);
         }
-        return dp(s1.length()-1,s2.length()-1,memo,s1,s2);
+        return dfs(s1.length()-1,s2.length()-1,memo,s1,s2);
     }
 
-    public int dp(int i, int j, int[][] memo, String s1, String s2){
+    public int dfs(int i, int j, int[][] memo, String s1, String s2){
         //base case 一个字符串处理完，不可能再有公共部分
         if(j == -1 || i == -1) return 0;
         if(memo[i][j] != -1) return memo[i][j];
         if(s1.charAt(i) == s2.charAt(j)) {
             //当前位置字符相同，两个指针往前移
-            memo[i][j] = dp(i-1,j-1,memo,s1,s2) + 1;
+            memo[i][j] = dfs(i-1,j-1,memo,s1,s2) + 1;
         }else{
-            memo[i][j] = Math.max(dp(i-1,j,memo,s1,s2),dp(i,j-1,memo,s1,s2));
+            memo[i][j] = Math.max(dfs(i-1,j,memo,s1,s2),dfs(i,j-1,memo,s1,s2));
         }
         return memo[i][j];
     }

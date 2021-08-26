@@ -3,7 +3,7 @@ package B0_BasicDataStructure;
 import java.util.*;
 
 /**
- * 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。
+ * 实现一个 Trie (前缀树)，包含insert,search, 和startsWith这三个操作。
  *
  * 示例:
  *

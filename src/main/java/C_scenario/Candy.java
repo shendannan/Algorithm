@@ -29,8 +29,8 @@ import java.util.*;
  */
 public class Candy {
     public static void main(String[] args) {
-        //STEP1: 使用并查集将牛牛分成若干组，分组后，一个组内的牛牛要么都吃，要么都不吃，一次问题简化成了
-        //有若干群人，分配资源，求能够满足资源最大化的人数。
+        //STEP1: 使用并查集将牛牛分成若干组，分组后，一个组内的牛牛要么都吃，要么都不吃
+        //问题简化成有若干群人，分配资源，求能够满足资源最大化的人数。
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt(); // n个牛牛
         int m = sc.nextInt(); // m个糖果
@@ -57,19 +57,15 @@ public class Candy {
             }
         }
 
-        //STEP2: 使用动态规划求解能吃上糖果的牛牛数量最多的最优解(0-1背包问题)
+        //STEP2: 使用动态规划求解能吃上糖果的牛牛数量最多的最优解(0-1背包问题，注意内层倒序遍历)
         // arrSuger的值代表每一组需要的糖果数，arrPeople代表每一组有多少人
-        int len = arrSuger.size();//一共有这么多组牛牛（互不相交）
-        // arr[组数][糖果数] = 能吃上糖的总人数，初始化都为0
-        int[][] arr = new int[len + 1][m + 1];
-        // 开始规划
-        for (int i = 1; i <= len; i++) {
-            for (int j = 1; j <= m; j++) {
-                arr[i][j] = Math.max(arrPeople.get(i - 1) + //注意i-1才是当前这组
-                                arr[i - 1][Math.max(0, j - arrSuger.get(i - 1))],
-                        arr[i - 1][j]);
+        //背包容量m 价值是arrPeople 物品重量是arrSuger
+        int[] dp = new int[m+1];
+        for (int i = 0;i<arrSuger.size();i++){
+            for(int j = m; j >= arrSuger.get(i); j--){
+                dp[j] = Math.max(dp[j], dp[j-arrSuger.get(i)]+arrPeople.get(i));
             }
         }
-        System.out.println(arr[len][m]);
+        System.out.println(dp[m]);
     }
 }

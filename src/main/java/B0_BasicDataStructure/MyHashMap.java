@@ -2,7 +2,8 @@ package B0_BasicDataStructure;
 
 public class MyHashMap {
     //不涉及扩容机制，不考虑哈希冲突（新值覆盖）
-    private final int MAX_LEN = 1000000007;
+    private final int MAX_LEN = 1000000007; //1E9+7
+    //链表的数组，由于不考虑哈希冲突，这里将链表简化为桶
     private Bucket[] bucketArray;
 
     static class Bucket {
